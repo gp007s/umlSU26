@@ -114,3 +114,4 @@ curl localhost:5001/v2/calculator/tags/list
 > builds `calculator`, pushes it to `localhost:5001`, and announces `ImagePushed`
 > (with the build number as the tag) to `ci.images` — read back cleanly. The lab's
 > keyed production + two-member group split/rebalance also verified.
+Testing PR trigger for week9 pipeline
