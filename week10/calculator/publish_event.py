@@ -20,7 +20,8 @@ event = {
     "event": "ImagePushed",
     "image": "calculator",
     "registry": "localhost:5001",
-    # TODO: add the version, for example  "version": os.environ["VERSION"]
+    # TODO: add the version, for example  "version": os.environ["VERSION"] -- DONE BELOW
+    "version": os.environ.get("VERSION", "latest"),
 }
 producer.send(os.environ.get("TOPIC", "ci.images"), event).get(timeout=10)
 producer.flush()

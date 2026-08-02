@@ -88,7 +88,27 @@ for msg in consumer:
     event = msg.value
     print(f"[event] {event}")
 
-    # TODO: read the version from the event.
-    # TODO: deploy(version), then run_tests(). If it passes, promote(version).
+    # TODO: read the version from the event. -- DONE BELOW
+    version = event.get("version") or event.get("tag")
+    if not version:
+        print("    no tag in event, skipping")
+        continue
+    print(f"    deploying calculator:{version}...")
+
+    # TODO: deploy(version), then run_tests(). If it passes, promote(version).  -- DONE BELOW
     #       If it fails, do nothing.
-    # TODO: teardown(version) when you are done with the candidate container.
+
+    deploy(version)
+
+    print(f"    running acceptance test...")
+    passed = run_tests()
+
+    if passed:
+        print(f"    test PASSED — promoting to latest")
+        promote(version)
+    else:
+        print(f"    test FAILED — leaving current release unchanged")
+
+    # TODO: teardown(version) when you are done with the candidate container.  -- DONE BELOW
+    teardown(version)
+    print(f"    candidate-{version} removed")
