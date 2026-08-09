@@ -1,3 +1,13 @@
+# Week-11 Exercise-Task3
+ Before CI change where filters **on Push** is restricted to only two folders. This should not triggure the workflow.
+     on:
+      workflow_dispatch:
+      push:
+        paths:
+          - "week10/calculator/**"
+          - ".github/workflows/calculator-ci.yml"
+
+
 # UML DevOps — Summer 2026 (MSIT.5330)
 
 Lab starter files for the course. Each `weekN/` folder holds that week's lab; clone
