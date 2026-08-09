@@ -24,6 +24,7 @@ jobs:
         working-directory: week10/calculator
         run: ./gradlew test
   build-and-test:
+    needs: unit-test
     runs-on: ubuntu-latest
     steps:
       - name: Check out the code
